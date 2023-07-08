@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import {COLORS} from '../../constants/theme';
+
 export default StyleSheet.create({
   swipeBox: {
     borderRadius: 16,
@@ -8,7 +10,6 @@ export default StyleSheet.create({
     shadowOpacity: 0.24,
     shadowRadius: 15.38,
     elevation: 19,
-    backgroundColor: 'white',
   },
   bookItem: {
     width: '100%',
@@ -18,10 +19,10 @@ export default StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 10,
     borderRadius: 16,
-    borderWidth: 0.2,
-    borderColor: 'black',
-    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: COLORS.stroke,
     marginBottom: 10,
+    backgroundColor: COLORS.dark,
   },
   imagePreview: {
     width: 60,
@@ -34,11 +35,13 @@ export default StyleSheet.create({
     fontWeight: '600',
     marginBottom: 2,
     maxWidth: 280,
+    color: COLORS.light,
   },
   name: {
     fontSize: 20,
     fontWeight: '800',
     maxWidth: 280,
+    color: COLORS.light,
   },
   rightActions: {
     flexDirection: 'row',
@@ -49,14 +52,14 @@ export default StyleSheet.create({
     height: '98%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: COLORS.red,
     borderRadius: 16,
     width: 80,
-    marginHorizontal: 4,
+    marginLeft: 8,
   },
   date: {
     fontSize: 10,
     marginTop: 2,
-    color: 'gray',
+    color: COLORS.light_gray,
   },
 });

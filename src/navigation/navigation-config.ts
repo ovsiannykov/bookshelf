@@ -1,19 +1,20 @@
 import {StackNavigationOptions} from '@react-navigation/stack';
+import {COLORS} from '../constants/theme';
 
 export const HEADER_STYLE_CONFIG: StackNavigationOptions = {
   headerShown: true,
   headerStyle: {
-    backgroundColor: 'white',
+    backgroundColor: COLORS.dark,
   },
   headerBackTitleStyle: {
-    color: '#155e75',
+    color: COLORS.light,
     fontSize: 12,
   },
-  headerTintColor: '#155e75',
+  headerTintColor: COLORS.light,
   headerShadowVisible: false,
   headerBackTitleVisible: false,
   headerTitleStyle: {
-    color: '#155e75',
+    color: COLORS.light,
     fontWeight: '600',
     fontSize: 20,
   },

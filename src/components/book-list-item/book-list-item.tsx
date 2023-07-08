@@ -4,6 +4,7 @@ import {RectButton, Swipeable} from 'react-native-gesture-handler';
 
 import DeleteIcon from '../../assets/icons/delete.svg';
 import DEFAULT_PHOTO from '../../assets/images/photo.png';
+import {COLORS} from '../../constants/theme';
 import useDateFormatters from '../../hooks/use-date-formatter';
 import {BookType} from '../../types/books-types';
 import styles from './book-list-item.styles';
@@ -32,7 +33,7 @@ const BookListItem = memo(({book, onPress, onDelete}: BookListItemProps) => {
     return (
       <View style={styles.rightActions}>
         <RectButton style={styles.deleteButton} onPress={deleteHandler}>
-          <DeleteIcon width={24} height={24} fill="white" />
+          <DeleteIcon width={24} height={24} fill={COLORS.light} />
         </RectButton>
       </View>
     );

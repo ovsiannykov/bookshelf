@@ -1,6 +1,7 @@
 import React, {memo} from 'react';
 import {ActivityIndicator, View} from 'react-native';
 
+import {COLORS} from '../../constants/theme';
 import styles from './loading-screen.styles';
 
 type LoadingScreenProps = {
@@ -11,7 +12,10 @@ type LoadingScreenProps = {
 const LoadingScreen = memo(({size, color}: LoadingScreenProps) => {
   return (
     <View style={styles.screen}>
-      <ActivityIndicator size={size ?? 'large'} color={color || 'gray'} />
+      <ActivityIndicator
+        size={size ?? 'large'}
+        color={color || COLORS.light_gray}
+      />
     </View>
   );
 });
