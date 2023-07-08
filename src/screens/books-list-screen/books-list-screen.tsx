@@ -33,6 +33,13 @@ function BooksListScreen() {
     navigation.navigate('CREATE_BOOK_SCREEN');
   }, [navigation]);
 
+  const goToDetailScreen = useCallback(
+    (item: BookType) => {
+      navigation.navigate('BOOK_DETAIL_SCREEN', {book: item});
+    },
+    [navigation],
+  );
+
   const keyExtractor = useCallback((item: BookType) => item.id, []);
 
   const deleteBookHandler = useCallback(
@@ -44,9 +51,13 @@ function BooksListScreen() {
 
   const renderBookItem: ListRenderItem<BookType> = useCallback(
     ({item}) => (
-      <BookListItem book={item} onDelete={() => deleteBookHandler(item.id)} />
+      <BookListItem
+        book={item}
+        onPress={() => goToDetailScreen(item)}
+        onDelete={() => deleteBookHandler(item.id)}
+      />
     ),
-    [],
+    [deleteBookHandler, goToDetailScreen],
   );
 
   return (
