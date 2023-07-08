@@ -1,0 +1,70 @@
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
+  swipeBox: {
+    borderRadius: 16,
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 14},
+    shadowOpacity: 0.24,
+    shadowRadius: 15.38,
+    elevation: 19,
+    backgroundColor: 'white',
+    marginBottom: 4,
+  },
+  bookItem: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 16,
+    borderWidth: 0.2,
+    borderColor: 'black',
+    backgroundColor: 'white',
+  },
+  imagePreview: {
+    width: 60,
+    height: 80,
+    marginRight: 10,
+    borderRadius: 4,
+  },
+  author: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 2,
+    maxWidth: 280,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: '800',
+    maxWidth: 280,
+  },
+  rightActions: {
+    flexDirection: 'row',
+    height: '100%',
+  },
+  editButton: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'blue',
+    borderRadius: 16,
+    width: 80,
+    marginHorizontal: 4,
+  },
+  deleteButton: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+    borderRadius: 16,
+    width: 80,
+    marginRight: 4,
+  },
+  date: {
+    fontSize: 10,
+    marginTop: 2,
+    color: 'gray',
+  },
+});

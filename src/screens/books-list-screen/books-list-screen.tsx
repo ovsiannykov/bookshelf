@@ -1,12 +1,13 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
 
+import BookListItem from '../../components/book-list-item/book-list-item';
 import styles from './books-list-screen.styles';
 
 const BooksListScreen = () => {
   return (
     <SafeAreaView style={styles.screen}>
-      <Text>BooksListScreen</Text>
+      <BookListItem />
     </SafeAreaView>
   );
 };
