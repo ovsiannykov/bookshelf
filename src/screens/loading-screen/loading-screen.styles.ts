@@ -4,8 +4,8 @@ import {COLORS} from '../../constants/theme';
 export default StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: COLORS.light,
-    paddingHorizontal: 16,
+    backgroundColor: COLORS.dark,
+    paddingHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },

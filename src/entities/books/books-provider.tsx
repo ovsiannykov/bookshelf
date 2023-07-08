@@ -1,14 +1,17 @@
 import {initializeApp} from 'firebase/app';
-import {collection, getDocs, getFirestore} from 'firebase/firestore';
+import {addDoc, collection, getDocs, getFirestore} from 'firebase/firestore';
 import React, {useContext} from 'react';
 
+import {Alert} from 'react-native';
 import {firebaseConfig} from '../../env/firebase';
 import {BookType} from '../../types/books-types';
 
 type BooksContext = {
   books: BookType[];
   getBooks: () => void;
-  isLoading: boolean;
+  addBook: ({name, author, image, goBack}: BookCreatedData) => Promise<void>;
+  getLoading: boolean;
+  addLaoding: boolean;
 };
 
 export const booksContext = React.createContext<BooksContext>(undefined!);
@@ -21,6 +24,13 @@ type State = {
   context: BooksContext;
 };
 
+type BookCreatedData = {
+  name: string;
+  author: string;
+  image: string;
+  goBack?: () => void;
+};
+
 export class BooksProvider extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -28,14 +38,16 @@ export class BooksProvider extends React.Component<Props, State> {
       context: {
         books: [],
         getBooks: this.getBooks,
-        isLoading: false,
+        addBook: this.addBook,
+        getLoading: false,
+        addLaoding: false,
       },
     };
   }
 
   public getBooks = async () => {
     this.setState(prevState => ({
-      context: {...prevState.context, isLoading: true},
+      context: {...prevState.context, getLoading: true},
     }));
 
     initializeApp(firebaseConfig);
@@ -54,11 +66,43 @@ export class BooksProvider extends React.Component<Props, State> {
       }));
     } catch (error) {
       console.error(error);
+      Alert.alert('Ooops...', 'Fail to load books. Try again!');
     } finally {
       this.setState(prevState => ({
-        context: {...prevState.context, isLoading: false},
+        context: {...prevState.context, getLoading: false},
       }));
     }
+  };
+
+  public addBook = async ({name, author, image, goBack}: BookCreatedData) => {
+    this.setState(prevState => ({
+      context: {...prevState.context, addLaoding: true},
+    }));
+
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    const booksCollection = collection(db, 'books');
+
+    const newBook = {
+      date: Date.now(),
+      name,
+      author,
+      image,
+    };
+
+    await addDoc(booksCollection, newBook)
+      .then(() => {
+        goBack && goBack();
+        this.getBooks();
+      })
+      .catch(err => {
+        console.log(err);
+        Alert.alert('Ooops...', 'Something get wrong. Try again!');
+      });
+
+    this.setState(prevState => ({
+      context: {...prevState.context, addLaoding: false},
+    }));
   };
 
   render(): JSX.Element {

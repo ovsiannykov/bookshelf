@@ -12,10 +12,7 @@ type LoadingScreenProps = {
 const LoadingScreen = memo(({size, color}: LoadingScreenProps) => {
   return (
     <View style={styles.screen}>
-      <ActivityIndicator
-        size={size ?? 'large'}
-        color={color || COLORS.light_gray}
-      />
+      <ActivityIndicator size={size ?? 'large'} color={color || COLORS.light} />
     </View>
   );
 });
