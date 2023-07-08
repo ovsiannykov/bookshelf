@@ -23,7 +23,7 @@ type BooksListScreenNavigationProp =
 
 function BooksListScreen() {
   const navigation = useNavigation<BooksListScreenNavigationProp>();
-  const {getBooks, books, getLoading} = useBooksContext();
+  const {getBooks, books, getLoading, deleteBook} = useBooksContext();
 
   useEffect(() => {
     getBooks();
@@ -35,8 +35,17 @@ function BooksListScreen() {
 
   const keyExtractor = useCallback((item: BookType) => item.id, []);
 
+  const deleteBookHandler = useCallback(
+    (id: string) => {
+      deleteBook(id);
+    },
+    [deleteBook],
+  );
+
   const renderBookItem: ListRenderItem<BookType> = useCallback(
-    ({item}) => <BookListItem book={item} />,
+    ({item}) => (
+      <BookListItem book={item} onDelete={() => deleteBookHandler(item.id)} />
+    ),
     [],
   );
 

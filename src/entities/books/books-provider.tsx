@@ -1,5 +1,12 @@
 import {initializeApp} from 'firebase/app';
-import {addDoc, collection, getDocs, getFirestore} from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+} from 'firebase/firestore';
 import React, {useContext} from 'react';
 
 import {Alert} from 'react-native';
@@ -10,6 +17,7 @@ type BooksContext = {
   books: BookType[];
   getBooks: () => void;
   addBook: ({name, author, image, goBack}: BookCreatedData) => Promise<void>;
+  deleteBook: (id: string) => Promise<void>;
   getLoading: boolean;
   addLaoding: boolean;
 };
@@ -39,6 +47,7 @@ export class BooksProvider extends React.Component<Props, State> {
         books: [],
         getBooks: this.getBooks,
         addBook: this.addBook,
+        deleteBook: this.deleteBook,
         getLoading: false,
         addLaoding: false,
       },
@@ -74,6 +83,28 @@ export class BooksProvider extends React.Component<Props, State> {
     }
   };
 
+  public deleteBook = async (id: string) => {
+    this.setState(prevState => ({
+      context: {...prevState.context, getLoading: true},
+    }));
+
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    const docRef = doc(db, 'books', id);
+
+    await deleteDoc(docRef)
+      .then(() => {
+        this.getBooks();
+      })
+      .catch(() => {
+        Alert.alert('Ooops...', 'Something get wrong. Try again!');
+      });
+
+    this.setState(prevState => ({
+      context: {...prevState.context, getLoading: false},
+    }));
+  };
+
   public addBook = async ({name, author, image, goBack}: BookCreatedData) => {
     this.setState(prevState => ({
       context: {...prevState.context, addLaoding: true},
@@ -84,7 +115,6 @@ export class BooksProvider extends React.Component<Props, State> {
     const booksCollection = collection(db, 'books');
 
     const newBook = {
-      date: Date.now(),
       name,
       author,
       image,

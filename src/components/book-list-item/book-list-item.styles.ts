@@ -57,9 +57,4 @@ export default StyleSheet.create({
     width: 80,
     marginLeft: 8,
   },
-  date: {
-    fontSize: 10,
-    marginTop: 2,
-    color: COLORS.light_gray,
-  },
 });
