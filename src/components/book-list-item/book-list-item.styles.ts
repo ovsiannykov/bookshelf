@@ -9,7 +9,6 @@ export default StyleSheet.create({
     shadowRadius: 15.38,
     elevation: 19,
     backgroundColor: 'white',
-    marginBottom: 4,
   },
   bookItem: {
     width: '100%',
@@ -22,6 +21,7 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     borderColor: 'black',
     backgroundColor: 'white',
+    marginBottom: 10,
   },
   imagePreview: {
     width: 60,
@@ -43,24 +43,16 @@ export default StyleSheet.create({
   rightActions: {
     flexDirection: 'row',
     height: '100%',
-  },
-  editButton: {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue',
-    borderRadius: 16,
-    width: 80,
-    marginHorizontal: 4,
+    maxHeight: 102,
   },
   deleteButton: {
-    height: '100%',
+    height: '98%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',
     borderRadius: 16,
     width: 80,
-    marginRight: 4,
+    marginHorizontal: 4,
   },
   date: {
     fontSize: 10,

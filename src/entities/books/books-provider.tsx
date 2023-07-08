@@ -11,9 +11,7 @@ type BooksContext = {
   isLoading: boolean;
 };
 
-export const booksContext = React.createContext<BooksContext | undefined>(
-  undefined,
-);
+export const booksContext = React.createContext<BooksContext>(undefined!);
 
 type Props = {
   children: React.ReactNode;

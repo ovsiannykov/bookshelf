@@ -4,8 +4,8 @@ export default StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  list: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
