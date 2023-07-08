@@ -1,10 +1,6 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Bookshelf App 📱
 
-# Getting Started
-
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
+### 1️⃣ Start the Metro Server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
@@ -18,11 +14,11 @@ npm start
 yarn start
 ```
 
-## Step 2: Start your Application
+### 2️⃣ Start your Application
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
-### For Android
+#### For Android
 
 ```bash
 # using npm
@@ -32,9 +28,11 @@ npm run android
 yarn android
 ```
 
-### For iOS
+#### For iOS
 
 ```bash
+cd ios && pod isntall
+
 # using npm
 npm run ios
 
@@ -46,34 +44,32 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+## Congratulations! 🎉
 
-Now that you have successfully run the app, let's modify it.
+You've successfully run this React Native App 😌
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+# 🎯 What the task?
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Exercise:
+You need to develop a simple Bookshelf application using React Native. The application should allow users to view the list of books and add new books to the library.
 
-## Congratulations! :tada:
+Requirements:
+Create a book list screen that displays the title and author of each book. The book list should be implemented using a FlatList or other suitable component to display a large amount of data.
 
-You've successfully run and modified your React Native App. :partying_face:
+Implement the ability to add a new book. Create a separate screen or modal window where the user can enter the title and author of the book. After adding a book, it should appear in the list.
 
-### Now what?
+Implement the functionality to remove a book from the list. The user should be able to swipe on a list item and delete the book.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+Develop a simple application design, including basic user interface elements (such as buttons, text fields, etc.). You can use the standard React Native styles or add your own styles with CSS.
 
-# Troubleshooting
+The application must be developed using functional components and hooks.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+To manage application state, use a suitable library such as Redux, MobX or Context API, Zustand.
 
-# Learn More
+Additional tasks (optional):
+Implement functionality for editing book information.
+Add the ability to filter the list of books by author or title.
+Design animations for smooth screen transitions or other custom actions.
+Include and use third party libraries such as react-navigation to improve navigation and user experience.
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Try to develop clean and organized code following React Native development best practices. At the end of the assignment, provide the source code for the project, along with instructions for running it.
