@@ -1,13 +1,19 @@
+import {initializeApp} from 'firebase/app';
+import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import React, {useContext} from 'react';
+
+import {firebaseConfig} from '../../env/firebase';
 import {BookType} from '../../types/books-types';
 
-export const booksContext = React.createContext<BooksContext>(undefined!);
-
 type BooksContext = {
-  books: BookType[] | null;
-  getBooks: InstanceType<typeof BooksProvider>['getBooks'];
+  books: BookType[];
+  getBooks: () => void;
   isLoading: boolean;
 };
+
+export const booksContext = React.createContext<BooksContext | undefined>(
+  undefined,
+);
 
 type Props = {
   children: React.ReactNode;
@@ -22,30 +28,39 @@ export class BooksProvider extends React.Component<Props, State> {
     super(props);
     this.state = {
       context: {
-        books: null,
+        books: [],
         getBooks: this.getBooks,
         isLoading: false,
       },
     };
   }
 
-  getBooks = async () => {
-    this.setState(prev => ({context: {...prev.context, isLoading: true}}));
+  public getBooks = async () => {
+    this.setState(prevState => ({
+      context: {...prevState.context, isLoading: true},
+    }));
 
-    // try {
-    //  // const res = await axios.get(BASE_URL);
+    initializeApp(firebaseConfig);
+    const db = getFirestore();
+    const booksCollection = collection(db, 'books');
 
-    //   if (res.status === 200) {
-    //     await this.setState(prev => ({
-    //       context: {...prev.context, posts: res.data},
-    //     }));
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // } finally {
-    //   this.setState(prev => ({context: {...prev.context, isLoading: false}}));
-    // }
-    //this.setState(prev => ({context: {...prev.context, isLoading: false}}));
+    try {
+      const snapshot = await getDocs(booksCollection);
+      let booksArr: BookType[] = [];
+      snapshot.docs.forEach(doc => {
+        booksArr.push({...doc.data(), id: doc.id} as BookType);
+      });
+
+      this.setState(prevState => ({
+        context: {...prevState.context, books: booksArr},
+      }));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setState(prevState => ({
+        context: {...prevState.context, isLoading: false},
+      }));
+    }
   };
 
   render(): JSX.Element {

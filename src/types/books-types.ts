@@ -3,5 +3,5 @@ export type BookType = {
   name: string;
   author: string;
   image?: string;
-  date: string;
+  date: ObjectConstructor[] | string;
 };
